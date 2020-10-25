@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8"/>
+        <title>4-5</title>
+    </head>
+    <body>
+        <script>
+            'use strict';
+
+            function sum(a, b){
+                return a + b;
+            }
+
+            function difference(a, b){
+                return a - b;
+            }
+
+            function division(a, b){
+                return a / b;
+            }
+
+            function multiplication(a, b){
+                return a * b;
+            }
+
+            function mathOperation(a, b, operation){
+                switch(operation)
+                {
+                    case "+":
+                        return sum(a, b);
+                    case "-":
+                        return difference(a, b);
+                    case "/":
+                        return division(a, b);
+                    case "*":
+                        return multiplication(a, b);
+                }
+            }
+
+            let a = 6;
+            let b = 2;
+
+            console.log("Сумма: " + mathOperation(a, b, "+"));
+            console.log("Разность: " + mathOperation(a, b, "-"));
+            console.log("Деление: " + mathOperation(a, b, "/"));
+            console.log("Умножение: " + mathOperation(a, b, "*"));
+        </script>
+    </body>
+</html>
