@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8"/>
+        <title>3</title>
+    </head>
+    <body>
+        <script>
+            'use strict';
+            const discount = 0.15;
+            const products = [
+                {
+                    id: 3,
+                    price: 200,
+                },
+                {
+                    id: 4,
+                    price: 900,
+                },
+                {
+                    id: 1,
+                    price: 1000,
+                }
+            ];
+
+            products.forEach(product => product.price *= 1 - discount);
+
+            console.log(products);
+        </script>
+    </body>
+</html>
