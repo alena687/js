@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8"/>
+        <title>1</title>
+    </head>
+    <body>
+        <script>
+            'use strict';
+
+            function IntToObject(value){
+                if (isNaN(value)){
+                    console.log(value + " - это не число");
+                    return;
+                }
+
+                var num = +value;
+
+                if (!Number.isInteger(num)){
+                    console.log(value + " - это не целое число");
+                    return;
+                }
+                if (num < 0 || num > 999){
+                    console.log(value + " не входит в указанный диапазон (0-999)");
+                    return;
+                }
+
+                this.units = num % 10;
+                this.tens = num % 100 != 0 ? Math.floor(num % 100 / 10) : 0;
+                this.hundreds = Math.floor(num / 100);
+            }
+
+            let value = prompt("Введите целое число от 0 до 999:")
+            const convertedValue = new IntToObject(value);
+
+            for(let prop in convertedValue){
+                if( convertedValue.hasOwnProperty( prop ) ) {
+                    console.log(prop + " = " + convertedValue[prop]);
+                } 
+            }
+        </script>
+    </body>
+</html>

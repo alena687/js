@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8"/>
+        <title>1.2</title>
+    </head>
+    <body>
+        <script>
+            'use strict';
+
+            //ES5
+            function PostEs5(author, text, date){
+                this.author = author;
+                this.text = text;
+                this.date = date;
+            }
+
+            PostEs5.prototype.edit = function(text){
+                this.text = text;
+            }
+
+            PostEs5.prototype.log = function(){
+                for(let prop in this){
+                    if( this.hasOwnProperty( prop ) ) {
+                        console.log(prop + " = " + this[prop]);
+                    } 
+                }
+            }
+
+            function AttachedPostEs5(author, text, date){
+                PostEs5.call(this, author, text, date);
+                this.highlighted = false;
+            }
+            AttachedPostEs5.prototype = Object.create(PostEs5.prototype);
+            AttachedPostEs5.prototype.constructor = AttachedPostEs5;
+            AttachedPostEs5.prototype.makeTextHighlighted = function(){
+                this.highlighted = true;
+            }
+
+            const postEs5 = new PostEs5("Author post es5", "text 1", Date.now());
+            postEs5.edit("new text1");
+            postEs5.log();
+
+            const attachedPostEs5 = new AttachedPostEs5("Author attached post es5", "text 2", Date.now());
+            attachedPostEs5.edit("new text2");
+            attachedPostEs5.makeTextHighlighted();
+            attachedPostEs5.log();
+
+            //ES6
+            class PostEs6{
+                constructor(author, text, date) {
+                    this.author = author;
+                    this.text = text;
+                    this.date = date;
+                }
+
+                edit = function(text){
+                    this.text = text;
+                }
+
+                log = function(){
+                    for(let prop in this){
+                        if( this.hasOwnProperty( prop ) ) {
+                            console.log(prop + " = " + this[prop]);
+                        } 
+                    }
+                }
+            }
+
+            class AttachedPostEs6 extends PostEs5{
+                constructor(author, text, date){
+                    super(author, text, date);
+                    this.highlighted = false;
+                }
+
+                makeTextHighlighted = function(){
+                    this.highlighted = true;
+                }
+            }
+
+            const postEs6 = new PostEs6("Author post es6", "text 1", Date.now());
+            postEs6.edit("new text1");
+            postEs6.log();
+
+            const attachedPostEs6 = new AttachedPostEs6("Author attached post es6", "text 2", Date.now());
+            attachedPostEs6.edit("new text2");
+            attachedPostEs6.makeTextHighlighted();
+            attachedPostEs6.log();
+
+            //test
+            console.log(postEs5 instanceof PostEs5);
+            console.log(attachedPostEs5 instanceof AttachedPostEs5);
+            console.log(postEs6 instanceof PostEs6);
+            console.log(attachedPostEs6 instanceof AttachedPostEs6);
+        </script>
+    </body>
+</html>
